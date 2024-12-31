@@ -1,3 +1,5 @@
+'use client';
+
 import { Container } from '@chakra-ui/react';
 import { Heart, House, MessageSquareCode, Search, User } from 'lucide-react';
 import React, { useState } from 'react';
@@ -6,48 +8,46 @@ import { GrSearch } from 'react-icons/gr';
 import { GrFormSearch } from 'react-icons/gr';
 import { GoSearch } from 'react-icons/go';
 import { LuSearch } from 'react-icons/lu';
+import Link from 'next/link';
 
 const tabBarNav = [
   {
     label: '검색',
     href: '#',
-    icon: <Search size={28} />,
+    icon: Search,
   },
   {
     label: '홈',
     href: '#',
-    icon: <House size={28} />,
+    icon: House,
   },
   {
     label: '좋아요',
     href: '#',
-    icon: <Heart size={28} />,
+    icon: Heart,
   },
 ];
 
 const TabBar = () => {
   const [selected, setSelected] = useState(1);
   return (
-    <nav className="bg-white fixed bottom-0 left-0 right-0 border-t border-t-gray-200 z-50">
-      <Container>
-        <div className="flex gap-4 h-[55px]">
-          {tabBarNav.map((item, index) => (
-            <a
-              key={index}
-              href={item.href}
+    <nav className="bg-white fixed bottom-0 left-0 right-0 z-50 h-14 border-t border-t-gray-200">
+      <ul className="container flex gap-10 h-14">
+        {tabBarNav.map(({ label, icon: Icon, href }, index) => (
+          <li key={index} className="basis-2/6">
+            <Link
+              href={href}
               onClick={() => {
                 setSelected(index);
               }}
-              className="basis-2/6 flex items-center justify-center"
+              className="w-full h-full flex items-center justify-center"
             >
-              {React.cloneElement(item.icon, {
-                className: `${selected === index ? 'text-gray-900' : 'text-gray-300'}`,
-              })}
-              <span className="blind">{item.label}</span>
-            </a>
-          ))}
-        </div>
-      </Container>
+              <span className="blind">{label}</span>
+              <Icon size={28} className={`${selected === index ? 'text-gray-900' : 'text-gray-300'}`} />
+            </Link>
+          </li>
+        ))}
+      </ul>
     </nav>
   );
 };

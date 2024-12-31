@@ -6,16 +6,18 @@ import Main from '@/components/layout/Main';
 import Home from './home/home';
 import SearchInput from '@/components/layout/header/SearchInput';
 import TabBar from '@/components/layout/navigation/TabBar';
+import Wrap from '@/components/layout/Wrap';
 
 export default function Page() {
   return (
     <>
-      <Header />
-      {/* <SearchInput /> */}
-      <Main>
-        <Home />
-      </Main>
-      <TabBar />
+      <Wrap>
+        <Header />
+        <Main>
+          <Home />
+        </Main>
+        <TabBar />
+      </Wrap>
     </>
   );
 }

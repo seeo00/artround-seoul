@@ -1,3 +1,49 @@
-.swiper .swiper-button-next::before, .swiper .swiper-button-prev::before {
+.swiper .swiper-button-next::before,
+.swiper .swiper-button-prev::before {
   color: var(--foreground);
+}
+
+.overviewSwiper .swiper-pagination-bullet-active {
+  background-color: #fff !important;
+}
+
+.detailsSwiper {
+  .swiper-button-disabled {
+    opacity: 0.25 !important;
+  }
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: 32px;
+    height: 32px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.8;
+
+    &::after {
+      content: '';
+      background: no-repeat 0 0 / cover;
+      background-position: center;
+      background-size: 12px;
+      width: 24px;
+      height: 24px;
+    }
+  }
+  .swiper-button-prev::after {
+    background-image: url(/images/pattern/common/chevron-left-solid.svg);
+  }
+
+  .swiper-button-next::after {
+    background-image: url(/images/pattern/common/chevron-right-solid.svg);
+  }
+  .swiper-pagination-bullet {
+    width: 20px;
+    height: 4px;
+    border-radius: 0;
+  }
+  .swiper-pagination-bullet-active {
+    background: $font-color-base;
+  }
 }

@@ -1,16 +1,16 @@
-import React from 'react'
-import Footer from '@/components/layout/Footer'
-import Header from '@/components/layout/header/Header'
-import Main from '@/components/layout/Main'
+import React from 'react';
+import Footer from '@/components/layout/Footer';
+import Header from '@/components/layout/header/Header';
+import Main from '@/components/layout/Main';
 
-const AboutLayout = ({children}) => {
+const AboutLayout = ({ children }) => {
   return (
     <>
-      <Header />
+      <Header type="type2" />
       <Main>{children}</Main>
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default AboutLayout
+export default AboutLayout;

@@ -58,7 +58,7 @@ q {
 blockquote {
   &:before,
   &:after {
-    content: "";
+    content: '';
     content: none;
   }
 }
@@ -66,7 +66,7 @@ blockquote {
 q {
   &:before,
   &:after {
-    content: "";
+    content: '';
     content: none;
   }
 }
@@ -97,15 +97,15 @@ body {
 
 /* 뷰표트 변환시 폰트크기 자동확대 방지 */
 input {
-  &[type="text"],
-  &[type="password"],
-  &[type="submit"],
-  &[type="search"] {
+  &[type='text'],
+  &[type='password'],
+  &[type='submit'],
+  &[type='search'] {
     appearance: none;
     border-radius: 0;
   }
 
-  &:checked[type="checkbox"] {
+  &:checked[type='checkbox'] {
     background-color: #e4e4e4;
     appearance: checkbox;
   }
@@ -117,15 +117,15 @@ button {
 }
 
 input {
-  &[type="button"],
-  &[type="submit"],
-  &[type="reset"],
-  &[type="file"] {
+  &[type='button'],
+  &[type='submit'],
+  &[type='reset'],
+  &[type='file'] {
     appearance: button;
     border-radius: 0;
   }
 
-  &[type="search"]::-webkit-search-cancel-button {
+  &[type='search']::-webkit-search-cancel-button {
     appearance: none;
   }
 }
@@ -145,8 +145,8 @@ hr {
   display: none;
 }
 
-input[type="password"] {
-  font-family: "Malgun Gothic";
+input[type='password'] {
+  font-family: 'Malgun Gothic';
 }
 
 /* 중요한 이미지 대체텍스트로 이미지off시에도 대체 텍스트를 보여주고자 할때 */
@@ -159,4 +159,33 @@ legend {
   height: 1px;
   margin: -1px;
   overflow: hidden;
+}
+
+.one-line-ellipsis {
+  white-space: nowrap; /* 한 줄로 유지 */
+  overflow: hidden; /* 넘치는 텍스트 숨김 */
+  text-overflow: ellipsis; /* 말줄임표 추가 */
+}
+
+// .two-line-ellipsis {
+//   display: -webkit-box; /* 플렉스박스와 비슷한 동작 */
+//   -webkit-box-orient: vertical; /* 수직으로 정렬 */
+//   overflow: hidden; /* 넘치는 텍스트 숨김 */
+//   text-overflow: ellipsis; /* 말줄임표 표시 */
+//   -webkit-line-clamp: 2; /* 최대 줄 수 설정 */
+// }
+
+.two-line-ellipsis {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: keep-all; /* 한국어 단어 줄바꿈 방지 */
+  overflow-wrap: break-word; /* 긴 단어 강제 줄바꿈 */
+  letter-spacing: -0.02em; /* 글자 간격 조정 */
+}
+
+a:hover {
+  text-decoration: none !important;
 }

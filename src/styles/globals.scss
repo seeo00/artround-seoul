@@ -29,6 +29,9 @@ $black: #000;
   --gray-90: #707070;
 
   --hdHeight: 80px;
+
+  --paddingMobile: 20px;
+  --paddingTablet: 30px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -41,6 +44,17 @@ $black: #000;
 body {
   color: var(--foreground);
   background: var(--background);
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--paddingMobile);
+}
+@media (min-width: 768px) {
+  .container {
+    padding: 0 var(--paddingTablet);
+  }
 }
 
 // [data-rsbs-backdrop] {
@@ -56,4 +70,17 @@ body {
 
 [data-rsbs-scroll='true'] {
   padding-bottom: 76px;
+}
+
+.h-calc {
+  height: calc(100vh - 56px);
+}
+
+.slide {
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  transform: translateY(30px); /* 기본적으로 아래로 약간 밀림 */
+}
+
+.swiper-slide-active ~ .slide {
+  transform: translateY(0); /* 활성 슬라이드 이후의 슬라이드 밀림 효과 제거 */
 }
