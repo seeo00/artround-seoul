@@ -1,3 +1,12 @@
+.slide {
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  transform: translateY(30px); /* 기본적으로 아래로 약간 밀림 */
+}
+
+.swiper-slide-active ~ .slide {
+  transform: translateY(0); /* 활성 슬라이드 이후의 슬라이드 밀림 효과 제거 */
+}
+
 .swiper .swiper-button-next::before,
 .swiper .swiper-button-prev::before {
   color: var(--foreground);
@@ -15,7 +24,7 @@
   .swiper-button-next {
     width: 32px;
     height: 32px;
-    background: #fff;
+    background: var(--background);
     border-radius: 50%;
     display: flex;
     justify-content: center;

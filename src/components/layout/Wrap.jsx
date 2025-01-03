@@ -7,7 +7,7 @@ const Wrap = ({ type = 'type1', children }) => {
   switch (type) {
     // padding-bottom 56px
     case 'type1':
-      return <div className="min-h-svh flex flex-col pb-14">{children}</div>;
+      return <div className=" min-h-svh flex flex-col bg-white pb-14">{children}</div>;
 
     // padding-bottom 0px
     case 'type2':

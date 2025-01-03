@@ -57,11 +57,11 @@ const ExhibitionInfoSheet = () => {
           </div>
         }
       >
-        <div className="container flex flex-col gap-4">
-          {filteredList.map((item) => (
-            <ExhibitionList key={item.id} item={item} />
+        <ul className="container flex flex-col gap-4">
+          {filteredList.map((list) => (
+            <ExhibitionList key={list.id} list={list} />
           ))}
-        </div>
+        </ul>
       </BottomSheet>
     </div>
   );

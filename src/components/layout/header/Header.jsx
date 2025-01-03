@@ -1,10 +1,12 @@
 'use client';
 
-import { Button, CloseButton, Container, Heading, Input, InputGroup, InputRightElement } from '@chakra-ui/react';
 import { ChevronLeft, Menu, Search, Share, X } from 'lucide-react';
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import BackButton from '@/components/ui/BackButton';
+import CloseButton from '@/components/ui/CloseButton';
+import { CaretLeft, House } from '@phosphor-icons/react';
 
 const headerNav = [
   { name: '주변', href: '/' },
@@ -52,10 +54,7 @@ const Header = ({ type = 'type1', title, sharing, prev }) => {
         return (
           <header className="fixed top-0 left-0 right-0 z-50 flex items-center h-14 shadow-sm bg-white">
             <div className="container flex justify-between items-center relative">
-              <button className="w-9 h-9 flex items-center">
-                <ChevronLeft size={28} />
-                <span className="sr-only">이전</span>
-              </button>
+              <BackButton />
             </div>
           </header>
         );
@@ -64,9 +63,10 @@ const Header = ({ type = 'type1', title, sharing, prev }) => {
         return (
           <header className="fixed top-0 left-0 right-0 z-50 flex items-center h-14 ">
             <div className="container flex justify-between items-center relative">
-              <button className="w-9 h-9 rounded-full bg-white shadow-md flex justify-center items-center">
-                <X size={24} />
+              <BackButton size={24} variant="rounded" />
+              <button className="w-10 h-10 rounded-full bg-white shadow-md flex justify-center items-center">
                 <span className="sr-only">닫기</span>
+                <House size={24} weight="fill" />
               </button>
             </div>
           </header>

@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
         />
       </head>
-      <body>
+      <body className="bg-gray-50">
         <Providers>
           <SkipNav />
           {children}

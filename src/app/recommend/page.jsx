@@ -18,6 +18,7 @@ import Image from 'next/image';
 import { Heart } from 'lucide-react';
 import { mockExhibitions } from '@/data/exhibitionsData';
 import LikeButton from '@/components/ui/LikeButton';
+import Link from 'next/link';
 
 const RecommendPage = () => {
   const [isLastSlideActive, setIsLastSlideActive] = useState(false);
@@ -55,8 +56,9 @@ const RecommendPage = () => {
         {mockExhibitions.map((slide) => (
           <SwiperSlide key={slide.id} className="h-[500px] rounded-lg overflow-hidden relative">
             {({ isActive, isNext, isPrev }) => (
-              <div
-                className={`w-full h-full rounded-lg overflow-hidden transition-all duration-500 
+              <Link
+                href={`/exhibition/overview/${slide.id}`}
+                className={`block w-full h-full rounded-lg overflow-hidden transition-all duration-500 
                 ${isFirstLoad ? '' : !isActive && !isPrev && (isNext ? 'translate-y-0' : 'translate-y-[100%]')}`}
               >
                 <Image
@@ -82,7 +84,7 @@ const RecommendPage = () => {
                     <span className="w-full text-white text-sm font-bold">{slide.description}</span>
                   </div>
                 </div>
-              </div>
+              </Link>
             )}
           </SwiperSlide>
         ))}

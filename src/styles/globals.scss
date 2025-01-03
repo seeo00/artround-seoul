@@ -72,15 +72,67 @@ body {
   padding-bottom: 76px;
 }
 
-.h-calc {
-  height: calc(100vh - 56px);
-}
+// div[data-rsbs-overlay='true'] {
+//   width: 390px;
+//   bottom: 0;
+//   left: 50%;
+//   transform: translateX(-50%);
+//   //left: 50%; /* 화면의 왼쪽에서 50% */
+//   //transform: translateX(-50%); /* 자신의 너비의 50%만큼 왼쪽으로 이동 */
+// }
 
-.slide {
-  transition: transform 0.5s ease, opacity 0.5s ease;
-  transform: translateY(30px); /* 기본적으로 아래로 약간 밀림 */
-}
+// [data-rsbs-overlay],
+// [data-rsbs-backdrop],
+// [data-rsbs-root]:after {
+//   width: 390px;
+//   margin: 0 auto;
+// }
 
-.swiper-slide-active ~ .slide {
-  transform: translateY(0); /* 활성 슬라이드 이후의 슬라이드 밀림 효과 제거 */
-}
+// [data-rsbs-overlay='true'] {
+//   width: 390px !important;
+//   left: 50% !important;
+//   right: auto !important;
+//   transform: translateX(-50%) !important;
+// }
+
+// [data-rsbs-root='true'] {
+//   max-width: 390px;
+//   margin: 0 auto;
+// }
+
+// [data-rsbs-overlay='true'] {
+//   width: 100%;
+//   max-width: 390px;
+//   left: 50%;
+//   transform: translateX(-50%);
+// }
+
+// [data-rsbs-root='true'],
+// [data-rsbs-backdrop='true'] {
+//   max-width: 390px;
+//   margin: 0 auto;
+// }
+
+// [data-rsbs-overlay='true'] {
+//   width: 100%;
+//   max-width: 390px;
+// }
+
+/* globals.css 또는 관련 스타일 파일 */
+// [data-rsbs-overlay='true'] {
+//   width: 390px !important;
+//   left: 50% !important;
+//   transform: translateX(-50%) !important;
+//   right: auto !important;
+// }
+
+// [data-rsbs-backdrop='true'] {
+//   width: 390px !important;
+//   left: 50% !important;
+//   transform: translateX(-50%) !important;
+// }
+
+// [data-rsbs-root='true'] {
+//   width: 390px !important;
+//   margin: 0 auto !important;
+// }

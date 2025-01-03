@@ -10,24 +10,6 @@ import { GoSearch } from 'react-icons/go';
 import { LuSearch } from 'react-icons/lu';
 import LikeButton from '@/components/ui/LikeButton';
 
-const tabBarNav = [
-  {
-    label: '검색',
-    href: '#',
-    icon: <Search size={28} />,
-  },
-  {
-    label: '홈',
-    href: '#',
-    icon: <House size={28} />,
-  },
-  {
-    label: '좋아요',
-    href: '#',
-    icon: <Heart size={28} />,
-  },
-];
-
 const ActionBar = () => {
   const [selected, setSelected] = useState(1);
   return (
