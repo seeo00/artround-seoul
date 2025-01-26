@@ -21,15 +21,45 @@ import LikeButton from '@/components/ui/LikeButton';
 import Link from 'next/link';
 
 const RecommendPage = () => {
+  const [mounted, setMounted] = useState(false);
+  const [exhibitions, setExhibitions] = useState(mockExhibitions);
   const [isLastSlideActive, setIsLastSlideActive] = useState(false);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
+  const [isInitialRender, setIsInitialRender] = useState(true);
 
   useEffect(() => {
-    setIsFirstLoad(false); // 첫 로딩 후 상태 변경
+    setMounted(true);
+    const stored = localStorage.getItem('exhibitions');
+    if (stored) {
+      setExhibitions(JSON.parse(stored));
+    }
   }, []);
 
+  useEffect(() => {
+    if (mounted && isInitialRender) {
+      setIsInitialRender(false);
+      setIsFirstLoad(false);
+    }
+  }, [mounted, isInitialRender]);
+
+  useEffect(() => {
+    if (mounted) {
+      localStorage.setItem('exhibitions', JSON.stringify(exhibitions));
+    }
+  }, [exhibitions, mounted]);
+
+  if (!mounted) return null;
+
+  const toggleLike = (id) => {
+    setExhibitions((prevExhibitions) =>
+      prevExhibitions.map((exhibition) =>
+        exhibition.id === id ? { ...exhibition, isLike: !exhibition.isLike } : exhibition
+      )
+    );
+  };
+
   return (
-    <div className="container h-main-minus-double-header overflow-hidden">
+    <div className="container h-full overflow-hidden">
       <Swiper
         grabCursor={true}
         direction={'vertical'}
@@ -53,7 +83,7 @@ const RecommendPage = () => {
         }}
         className="!overflow-visible h-[500px] w-full"
       >
-        {mockExhibitions.map((slide) => (
+        {exhibitions.map((slide) => (
           <SwiperSlide key={slide.id} className="h-[500px] rounded-lg overflow-hidden relative">
             {({ isActive, isNext, isPrev }) => (
               <Link
@@ -71,9 +101,12 @@ const RecommendPage = () => {
                 <div className="p-4 pb-14 absolute top-0 left-0 w-full h-full flex flex-col justify-between">
                   <div className="ml-auto">
                     <LikeButton
+                      isLike={slide.isLike}
+                      onClick={() => {
+                        toggleLike(slide.id);
+                      }}
                       size={24}
-                      defaultColor={'stroke-white fill-[rgba(0,0,0,0.5)]'}
-                      selectedColor={'stroke-white fill-white'}
+                      type="white"
                     />
                   </div>
                   <div className="flex flex-col items-start gap-3 overflow-hidden w-full">

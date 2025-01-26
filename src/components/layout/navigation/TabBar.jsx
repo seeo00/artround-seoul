@@ -34,7 +34,7 @@ const TabBar = () => {
     }
   };
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 h-14 bg-white">
+    <nav className="w-full max-w-[390px] mx-auto fixed bottom-0 left-0 right-0 z-50 h-14 bg-white">
       <ul className="container flex gap-10 h-14  border-t border-t-gray-200">
         {tabBarNav.map(({ label, icon: Icon, href }, index) => (
           <li key={index} className="basis-2/6">

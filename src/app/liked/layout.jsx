@@ -6,8 +6,8 @@ import React from 'react';
 
 const LikedLayout = ({ children }) => {
   return (
-    <Wrap>
-      <Header />
+    <Wrap type="type3">
+      <Header type="type4" title={'관심 리스트'} />
       <Main>{children}</Main>
       <TabBar />
     </Wrap>

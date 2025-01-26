@@ -10,13 +10,13 @@ import { GoSearch } from 'react-icons/go';
 import { LuSearch } from 'react-icons/lu';
 import LikeButton from '@/components/ui/LikeButton';
 
-const ActionBar = () => {
+const ActionBar = ({ isLike, onClick }) => {
   const [selected, setSelected] = useState(1);
   return (
-    <nav className="bg-white fixed bottom-0 left-0 right-0 border-t border-t-gray-200 z-50 h-20">
+    <nav className="bg-white max-w-[390px] mx-auto fixed bottom-0 left-0 right-0 border-t border-t-gray-200 z-50 h-20">
       <Container>
         <div className="flex justify-end gap-5 pt-4">
-          <LikeButton />
+          <LikeButton isLike={isLike} onClick={onClick} />
           <button className="w-8 h-8 flex justify-center items-center">
             <Share size={20} />
           </button>

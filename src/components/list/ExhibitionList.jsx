@@ -8,7 +8,7 @@ import LikeButton from '../ui/LikeButton';
 import { formatDate } from '@/app/utils/date';
 import Link from 'next/link';
 
-const ExhibitionList = ({ list }) => {
+const ExhibitionList = ({ list, toggleLike }) => {
   const [selected, setSelected] = useState(false);
   return (
     <>
@@ -33,7 +33,13 @@ const ExhibitionList = ({ list }) => {
             </div>
             <div className="mt-auto ml-auto">
               {/* <LikeButton /> */}
-              <LikeButton />
+              <LikeButton
+                isLike={list.isLike}
+                onClick={() => {
+                  toggleLike(list.id);
+                }}
+                type="red"
+              />
             </div>
           </div>
         </Link>

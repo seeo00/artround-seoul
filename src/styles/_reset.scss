@@ -189,3 +189,17 @@ legend {
 a:hover {
   text-decoration: none !important;
 }
+
+html,
+body {
+  width: 100%;
+  max-width: 390px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+header {
+  width: 100%;
+  max-width: 390px;
+  margin: 0 auto;
+}

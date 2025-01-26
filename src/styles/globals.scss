@@ -136,3 +136,11 @@ body {
 //   width: 390px !important;
 //   margin: 0 auto !important;
 // }
+::-webkit-scrollbar {
+  display: none; /* Chrome, Safari용 */
+}
+
+[data-rsbs-overlay='true'] {
+  max-width: 390px !important;
+  margin: 0 auto !important;
+}

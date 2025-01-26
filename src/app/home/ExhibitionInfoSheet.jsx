@@ -1,19 +1,23 @@
 'use client';
 
 import ExhibitionList from '@/components/list/ExhibitionList';
-import LikeButton from '@/components/ui/LikeButton';
 import { mockExhibitions } from '@/data/exhibitionsData';
-import { Container } from '@chakra-ui/react';
+import { useToast } from '@chakra-ui/react';
 import classNames from 'classnames';
-import { Calendar } from 'lucide-react';
-import Image from 'next/image';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { BottomSheet } from 'react-spring-bottom-sheet';
 import 'react-spring-bottom-sheet/dist/style.css';
+// import useExhibitions from '../utils/hooks/useExhibitions';
 
 const ExhibitionInfoSheet = () => {
+  const toast = useToast(); // useToast 훅
   const [open, setOpen] = useState(true); // 초기값 true로 설정하여 페이지 진입 시 열림
   const bottomSheetRef = useRef(null); // BottomSheet에 연결할 ref 생성
+  const [mounted, setMounted] = useState(false);
+  const [exhibitions, setExhibitions] = useState(mockExhibitions);
+
+  // 바텀시트 내부
+  const [selected, setSelected] = useState('Ongoing');
 
   const handleDismiss = () => {
     if (bottomSheetRef.current) {
@@ -21,13 +25,36 @@ const ExhibitionInfoSheet = () => {
     }
   };
 
-  // 바텀시트 내부
-  const [selected, setSelected] = useState('Ongoing');
+  useEffect(() => {
+    setMounted(true);
+    const stored = localStorage.getItem('exhibitions');
+    if (stored) {
+      setExhibitions(JSON.parse(stored));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (mounted) {
+      localStorage.setItem('exhibitions', JSON.stringify(exhibitions));
+    }
+  }, [exhibitions, mounted]);
+
+  if (!mounted) return null;
+
   const orderedStatuses = ['Ongoing', 'Ending Soon', 'Upcoming']; // 내부 탭 순서 고정
-  const uniqueStatuses = orderedStatuses.filter((status) => mockExhibitions.some((item) => item.status === status)); // orderedStatuses 배열을 기준으로 filter 함수 실행
-  const filteredList = mockExhibitions.filter((item) => {
+  const uniqueStatuses = orderedStatuses.filter((status) => exhibitions.some((item) => item.status === status)); // orderedStatuses 배열을 기준으로 filter 함수 실행
+  const filteredList = exhibitions.filter((item) => {
     return item.status === selected;
   });
+
+  //좋아요 토글 함수
+  const toggleLike = (id) => {
+    setExhibitions((prevExhibitions) =>
+      prevExhibitions.map((exhibition) =>
+        exhibition.id === id ? { ...exhibition, isLike: !exhibition.isLike } : exhibition
+      )
+    );
+  };
 
   return (
     <div>
@@ -59,7 +86,7 @@ const ExhibitionInfoSheet = () => {
       >
         <ul className="container flex flex-col gap-4">
           {filteredList.map((list) => (
-            <ExhibitionList key={list.id} list={list} />
+            <ExhibitionList key={list.id} list={list} toggleLike={toggleLike} />
           ))}
         </ul>
       </BottomSheet>

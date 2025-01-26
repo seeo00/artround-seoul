@@ -1,6 +1,18 @@
 'use client';
 
-import { Box, Container, Heading, HStack, Icon, List, ListIcon, ListItem, Text, VStack } from '@chakra-ui/react';
+import {
+  Box,
+  Container,
+  Heading,
+  HStack,
+  Icon,
+  List,
+  ListIcon,
+  ListItem,
+  Text,
+  useDisclosure,
+  VStack,
+} from '@chakra-ui/react';
 import { Calendar, Clock, Globe, Info, MapPin, MapPinned, Navigation, Ticket } from 'lucide-react';
 import React, { use } from 'react';
 
@@ -10,10 +22,13 @@ import { formatDate } from '@/app/utils/date';
 import IntroSwiper from './overviewSwiper';
 import OverviewSwiper from './overviewSwiper';
 import { useParams } from 'next/navigation';
+import ActionSheet from '@/components/ui/ActionSheet';
 
-const OverviewPage = ({ params }) => {
-  const resolvedParams = use(params);
-  const id = resolvedParams.id;
+const OverviewPage = () => {
+  const params = useParams();
+  const id = params?.id || null;
+
+  const { isOpen, onOpen, onClose } = useDisclosure(); // ActionSheet 상태 제어
   // 해당 전시 데이터 찾기
   const exhibition = mockExhibitions.find((item) => item.id === Number(id));
   // URL 파라미터에서 id 값 가져오기
@@ -80,7 +95,7 @@ const OverviewPage = ({ params }) => {
             </a>
           </li>
           <li className="basis-2/6">
-            <button className="w-full flex flex-col gap-3 items-center justify-between">
+            <button onClick={onOpen} className="w-full flex flex-col gap-3 items-center justify-between">
               <Navigation size={24} />
               <p className="text-sm font-medium">길찾기</p>
             </button>
@@ -90,6 +105,7 @@ const OverviewPage = ({ params }) => {
       <div className="flex-1">
         <OverviewSwiper title={exhibition.title} images={exhibition.images} />
       </div>
+      <ActionSheet isOpen={isOpen} onClose={onClose} />
     </div>
   );
 };

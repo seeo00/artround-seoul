@@ -13,7 +13,7 @@ const headerNav = [
   { name: '추천', href: '/recommend' },
 ];
 
-const Header = ({ type = 'type1', title, sharing, prev }) => {
+const Header = ({ type = 'type1', title }) => {
   const [selected, setSelected] = useState(0);
   const pathname = usePathname();
 
@@ -22,7 +22,7 @@ const Header = ({ type = 'type1', title, sharing, prev }) => {
       // home header
       case 'type1':
         return (
-          <header className="fixed top-0 left-0 right-0 z-50 flex items-center shadow-sm bg-white">
+          <header className="w-full max-w-[390px] fixed top-0 left-0 right-0 z-50 flex items-center shadow-sm bg-white">
             <nav className="container">
               <ul className="flex items-center">
                 {headerNav.map((item, index) => (
@@ -49,7 +49,7 @@ const Header = ({ type = 'type1', title, sharing, prev }) => {
             </nav>
           </header>
         );
-      // 이전, 타이틀, 각페이지에 맞는 버튼
+      // 이전 버튼 header
       case 'type2':
         return (
           <header className="fixed top-0 left-0 right-0 z-50 flex items-center h-14 shadow-sm bg-white">
@@ -58,7 +58,7 @@ const Header = ({ type = 'type1', title, sharing, prev }) => {
             </div>
           </header>
         );
-      // 닫기 헤더
+      // 이전 버튼, 홈 버튼 header
       case 'type3':
         return (
           <header className="fixed top-0 left-0 right-0 z-50 flex items-center h-14 ">
@@ -68,6 +68,15 @@ const Header = ({ type = 'type1', title, sharing, prev }) => {
                 <span className="sr-only">닫기</span>
                 <House size={24} weight="fill" />
               </button>
+            </div>
+          </header>
+        );
+      // 타이틀 제목 header
+      case 'type4':
+        return (
+          <header className="fixed top-0 left-0 right-0 z-50 flex items-center h-14 shadow-sm bg-white">
+            <div className="container flex justify-between items-center relative">
+              <h2 className="text-xl font-bold font-paperlogy">{title}</h2>
             </div>
           </header>
         );
