@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ExhibitionInfoSheet from './ExhibitionInfoSheet';
-import { Container } from '@chakra-ui/react';
-import Map from './Map';
+import KakaoMap from './KakaoMap';
+import { mockExhibitions } from '../../data/exhibitionsData';
 
 const Home = () => {
+  const [selectedExhibitionId, setSelectedExhibitionId] = useState(null);
+
+  const handleMarkerClick = (exhibitionId) => {
+    setSelectedExhibitionId(exhibitionId);
+  };
+
   return (
     <>
-      <Map />
-      <ExhibitionInfoSheet />
+      <KakaoMap exhibitionsData={mockExhibitions} onMarkerClick={handleMarkerClick} />
+      <ExhibitionInfoSheet selectedExhibitionId={selectedExhibitionId} />
     </>
   );
 };

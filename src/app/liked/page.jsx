@@ -6,52 +6,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { FaMapMarkedAlt } from 'react-icons/fa';
+import { useExhibitionLikes } from '../utils/hooks/useExhibitionLikes';
 
 const LikedPage = () => {
-  const [mounted, setMounted] = useState(false);
-  const [likedExhibitions, setLikedExhibitions] = useState([]);
-
-  // 초기 로컬스토리지 데이터 로드
-  useEffect(() => {
-    setMounted(true);
-    const stored = localStorage.getItem('exhibitions');
-    if (stored) {
-      const parsedData = JSON.parse(stored);
-      const filteredData = parsedData.filter((item) => item.isLike);
-      setLikedExhibitions(filteredData);
-    } else {
-      const filteredMockData = mockExhibitions.filter((item) => item.isLike);
-      setLikedExhibitions(filteredMockData);
-      localStorage.setItem('exhibitions', JSON.stringify(mockExhibitions));
-    }
-  }, []);
-
-  // likedExhibitions 변경 시 로컬스토리지 업데이트
-  useEffect(() => {
-    if (mounted && likedExhibitions.length > 0) {
-      const stored = localStorage.getItem('exhibitions');
-      if (stored) {
-        const parsedData = JSON.parse(stored);
-
-        const updatedData = parsedData.map((item) => {
-          const likedItem = likedExhibitions.find((ex) => ex.id === item.id);
-          return likedItem ? { ...item, isLike: likedItem.isLike } : item;
-        });
-
-        localStorage.setItem('exhibitions', JSON.stringify(updatedData));
-      }
-    }
-  }, [likedExhibitions, mounted]);
-
-  if (!mounted) return null;
-
-  const toggleLike = (id) => {
-    setLikedExhibitions((prevExhibitions) =>
-      prevExhibitions.map((exhibition) =>
-        exhibition.id === id ? { ...exhibition, isLike: !exhibition.isLike } : exhibition
-      )
-    );
-  };
+  const { likedExhibitions, toggleLike } = useExhibitionLikes(mockExhibitions);
 
   return (
     <div className="container">

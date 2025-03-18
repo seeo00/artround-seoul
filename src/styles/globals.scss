@@ -2,43 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'reset';
-@import 'fonts';
-@import 'swiper';
-
-// css variables
-$white: #fff;
-$black: #000;
-
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --white: #ffffff;
+  --black: #000000;
+  --font-color-base: #1d1d1d;
 
+  --background: var(--white);
+  --foreground: var(--font-color-base);
   --primary: #246beb;
   --secondary: #00ff00;
 
-  --gray-5: #f7f7f7;
-  --gray-10: #f0f0f0;
-  --gray-20: #e0e0e0;
-  --gray-30: #d0d0d0;
-  --gray-40: #c0c0c0;
-  --gray-50: #b0b0b0;
-  --gray-60: #a0a0a0;
-  --gray-70: #909090;
-  --gray-80: #808080;
-  --gray-90: #707070;
+  --font-family-base: 'Pretendard', sans-serif;
+  --font-size-base: 16px;
+  --font-weight-base: 400;
+  --line-height-base: 1.5;
+  --line-height-none: 1;
 
   --hdHeight: 80px;
-
   --paddingMobile: 20px;
   --paddingTablet: 30px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 body {
@@ -46,23 +33,68 @@ body {
   background: var(--background);
 }
 
+html,
+body {
+  width: 100%;
+  margin: 0 auto;
+  overflow-x: hidden;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-base);
+}
+
 .container {
-  max-width: 1280px;
+  max-width: 390px;
   margin: 0 auto;
   padding: 0 var(--paddingMobile);
 }
-@media (min-width: 768px) {
-  .container {
-    padding: 0 var(--paddingTablet);
+
+header {
+  width: 100%;
+  max-width: 390px;
+  margin: 0 auto;
+}
+
+// @media (min-width: 768px) {
+//   .container {
+//     max-width: 1280px;
+//     padding: 0 var(--paddingTablet);
+//   }
+// }
+
+a {
+  color: var(--foreground);
+  text-decoration: none;
+
+  &:hover,
+  &:active {
+    text-decoration: none !important;
   }
 }
 
-// [data-rsbs-backdrop] {
-//   background-color: transparent !important; /* 배경 투명화 */
-//   z-index: -1;
-//   //pointer-events: none; /* 클릭 이벤트 제거 */
-// }
+.one-line-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
+.two-line-ellipsis {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  letter-spacing: -0.02em;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Bottom Sheet 스타일 */
 [data-rsbs-header='true'] {
   padding: 20px 0 !important;
   box-shadow: none !important;
@@ -72,75 +104,11 @@ body {
   padding-bottom: 76px;
 }
 
-// div[data-rsbs-overlay='true'] {
-//   width: 390px;
-//   bottom: 0;
-//   left: 50%;
-//   transform: translateX(-50%);
-//   //left: 50%; /* 화면의 왼쪽에서 50% */
-//   //transform: translateX(-50%); /* 자신의 너비의 50%만큼 왼쪽으로 이동 */
-// }
-
-// [data-rsbs-overlay],
-// [data-rsbs-backdrop],
-// [data-rsbs-root]:after {
-//   width: 390px;
-//   margin: 0 auto;
-// }
-
-// [data-rsbs-overlay='true'] {
-//   width: 390px !important;
-//   left: 50% !important;
-//   right: auto !important;
-//   transform: translateX(-50%) !important;
-// }
-
-// [data-rsbs-root='true'] {
-//   max-width: 390px;
-//   margin: 0 auto;
-// }
-
-// [data-rsbs-overlay='true'] {
-//   width: 100%;
-//   max-width: 390px;
-//   left: 50%;
-//   transform: translateX(-50%);
-// }
-
-// [data-rsbs-root='true'],
-// [data-rsbs-backdrop='true'] {
-//   max-width: 390px;
-//   margin: 0 auto;
-// }
-
-// [data-rsbs-overlay='true'] {
-//   width: 100%;
-//   max-width: 390px;
-// }
-
-/* globals.css 또는 관련 스타일 파일 */
-// [data-rsbs-overlay='true'] {
-//   width: 390px !important;
-//   left: 50% !important;
-//   transform: translateX(-50%) !important;
-//   right: auto !important;
-// }
-
-// [data-rsbs-backdrop='true'] {
-//   width: 390px !important;
-//   left: 50% !important;
-//   transform: translateX(-50%) !important;
-// }
-
-// [data-rsbs-root='true'] {
-//   width: 390px !important;
-//   margin: 0 auto !important;
-// }
-::-webkit-scrollbar {
-  display: none; /* Chrome, Safari용 */
-}
-
 [data-rsbs-overlay='true'] {
   max-width: 390px !important;
   margin: 0 auto !important;
 }
+
+@import 'fonts';
+@import 'reset';
+@import 'swiper';

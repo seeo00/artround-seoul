@@ -4,83 +4,18 @@ import React, { use, useEffect, useRef, useState } from 'react';
 import ActionBar from './ActionBar';
 import Image from 'next/image';
 import DetailsSwiper from './detailsSwiper';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { mockExhibitions } from '@/data/exhibitionsData';
 import { formatDate } from '@/app/utils/date';
 import TagButton from '@/components/ui/TagButton';
 import { useParams } from 'next/navigation';
+import { useExhibitionLikes } from '@/app/utils/hooks/useExhibitionLikes';
 
 const DetailsPage = () => {
-  const [mounted, setMounted] = useState(false);
-  const [exhibitions, setExhibitions] = useState(mockExhibitions);
   const params = useParams();
   const id = params?.id || null;
 
-  useEffect(() => {
-    setMounted(true);
-    const stored = localStorage.getItem('exhibitions');
-    if (stored) {
-      setExhibitions(JSON.parse(stored));
-    }
-  }, []);
-
-  useEffect(() => {
-    if (mounted) {
-      localStorage.setItem('exhibitions', JSON.stringify(exhibitions));
-    }
-  }, [exhibitions, mounted]);
-
+  const { exhibitions, toggleLike } = useExhibitionLikes(mockExhibitions);
   const exhibition = exhibitions.find((item) => item.id === Number(id));
-
-  const triggerRef = useRef(null);
-  const textRef = useRef(null);
-  const imageRef = useRef(null);
-
-  useEffect(() => {
-    if (!triggerRef.current || !textRef.current || !imageRef.current) {
-      // console.warn('DOM 요소가 렌더링되지 않았습니다.');
-      return;
-    }
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    gsap.to(textRef.current, {
-      scrollTrigger: {
-        trigger: triggerRef.current,
-        start: 'bottom center',
-        end: 'bottom 40%',
-        scrub: true,
-        //markers: true,
-      },
-      opacity: 0.3,
-    });
-
-    gsap.to(imageRef.current, {
-      scrollTrigger: {
-        trigger: triggerRef.current,
-        start: 'bottom center',
-        end: 'bottom 40%',
-        scrub: true,
-        //markers: true,
-      },
-      scale: 1.2,
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, [mounted, triggerRef, textRef, imageRef]);
-
-  const toggleLike = (id) => {
-    setExhibitions((prevExhibitions) =>
-      prevExhibitions.map((exhibition) =>
-        exhibition.id === id ? { ...exhibition, isLike: !exhibition.isLike } : exhibition
-      )
-    );
-  };
-
-  if (!mounted) return null;
 
   if (!exhibition) {
     return <p>해당 전시 정보가 없습니다.</p>;
@@ -88,16 +23,15 @@ const DetailsPage = () => {
 
   return (
     <div className="relative">
-      <div ref={triggerRef} className="w-full max-w-[390px] mx-auto fixed top-0 left-0 right-0 z-[-1] overflow-hidden">
+      <div className="w-full max-w-[390px] mx-auto fixed top-0 left-0 right-0 z-[-1] overflow-hidden">
         <Image
           src={exhibition.images[1]}
           alt={`${exhibition.title} - 대표 이미지`}
           width={1470}
           height={980}
-          ref={imageRef}
           className="w-full h-[55svh] object-cover object-center brightness-[75%] relative"
         />
-        <div ref={textRef} className="container absolute bottom-14 left-0">
+        <div className="container absolute bottom-14 left-0">
           <div className="flex items-center">
             <span className="text-xs text-white font-medium">{exhibition.type}</span>
             <span className="block h-[10px] w-[1px] bg-gray-300 mx-2"></span>

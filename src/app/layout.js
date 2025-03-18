@@ -1,7 +1,6 @@
 import '@/styles/globals.scss';
 import { Providers } from '@/components/providers';
 import SkipNav from '@/components/layout/header/SkipNav';
-import Wrap from '@/components/layout/Wrap';
 
 export const metadata = {
   title: 'next.js template',

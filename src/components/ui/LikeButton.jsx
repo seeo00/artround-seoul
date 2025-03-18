@@ -17,13 +17,6 @@ const LikeButton = ({ isLike, onClick, size = 20, type = 'red' }) => {
 
   const { defaultColor, selectedColor } = styles[type];
 
-  // selected 상태 제거하고 isLike prop만 사용
-  // const handleClick = (e) => {
-  //   e.stopPropagation();
-  //   e.preventDefault();
-  //   if (onClick) onClick(e);
-  // };
-
   const handleClick = (e) => {
     e.stopPropagation();
     e.preventDefault();

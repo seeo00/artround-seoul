@@ -1,15 +1,13 @@
 'use client';
 
-import { Card, CardBody, Heading, IconButton, Image, Text } from '@chakra-ui/react';
-import { Calendar, Heart } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 import React, { useState } from 'react';
-import { LuSearch } from 'react-icons/lu';
 import LikeButton from '../ui/LikeButton';
 import { formatDate } from '@/app/utils/date';
 import Link from 'next/link';
+import Image from 'next/image';
 
-const ExhibitionList = ({ list, toggleLike }) => {
-  const [selected, setSelected] = useState(false);
+const ExhibitionList = ({ list, toggleLike, isSelected }) => {
   return (
     <>
       <li>
@@ -32,7 +30,6 @@ const ExhibitionList = ({ list, toggleLike }) => {
               </span>
             </div>
             <div className="mt-auto ml-auto">
-              {/* <LikeButton /> */}
               <LikeButton
                 isLike={list.isLike}
                 onClick={() => {

@@ -19,20 +19,19 @@ import { Heart } from 'lucide-react';
 import { mockExhibitions } from '@/data/exhibitionsData';
 import LikeButton from '@/components/ui/LikeButton';
 import Link from 'next/link';
+import { useExhibitionLikes } from '../utils/hooks/useExhibitionLikes';
 
 const RecommendPage = () => {
   const [mounted, setMounted] = useState(false);
-  const [exhibitions, setExhibitions] = useState(mockExhibitions);
   const [isLastSlideActive, setIsLastSlideActive] = useState(false);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const [isInitialRender, setIsInitialRender] = useState(true);
 
+  // useExhibitionLikes 훅 사용
+  const { exhibitions, toggleLike } = useExhibitionLikes(mockExhibitions);
+
   useEffect(() => {
     setMounted(true);
-    const stored = localStorage.getItem('exhibitions');
-    if (stored) {
-      setExhibitions(JSON.parse(stored));
-    }
   }, []);
 
   useEffect(() => {
@@ -42,21 +41,7 @@ const RecommendPage = () => {
     }
   }, [mounted, isInitialRender]);
 
-  useEffect(() => {
-    if (mounted) {
-      localStorage.setItem('exhibitions', JSON.stringify(exhibitions));
-    }
-  }, [exhibitions, mounted]);
-
   if (!mounted) return null;
-
-  const toggleLike = (id) => {
-    setExhibitions((prevExhibitions) =>
-      prevExhibitions.map((exhibition) =>
-        exhibition.id === id ? { ...exhibition, isLike: !exhibition.isLike } : exhibition
-      )
-    );
-  };
 
   return (
     <div className="container h-full overflow-hidden">

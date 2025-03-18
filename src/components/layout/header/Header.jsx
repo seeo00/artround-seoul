@@ -16,6 +16,7 @@ const headerNav = [
 const Header = ({ type = 'type1', title }) => {
   const [selected, setSelected] = useState(0);
   const pathname = usePathname();
+  const router = useRouter();
 
   const renderHeader = () => {
     switch (type) {
@@ -64,8 +65,11 @@ const Header = ({ type = 'type1', title }) => {
           <header className="fixed top-0 left-0 right-0 z-50 flex items-center h-14 ">
             <div className="container flex justify-between items-center relative">
               <BackButton size={24} variant="rounded" />
-              <button className="w-10 h-10 rounded-full bg-white shadow-md flex justify-center items-center">
-                <span className="sr-only">닫기</span>
+              <button
+                onClick={() => router.push('/')}
+                className="w-10 h-10 rounded-full bg-white shadow-md flex justify-center items-center"
+              >
+                <span className="sr-only">홈</span>
                 <House size={24} weight="fill" />
               </button>
             </div>

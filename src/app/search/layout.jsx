@@ -6,7 +6,7 @@ import React from 'react';
 
 const SearchLayout = ({ children }) => {
   return (
-    <Wrap>
+    <Wrap type="type4">
       <Header type="type4" title={'검색'} />
       <Main>{children}</Main>
       <TabBar />
