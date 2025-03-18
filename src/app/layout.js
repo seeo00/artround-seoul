@@ -3,7 +3,7 @@ import { Providers } from '@/components/providers';
 import SkipNav from '@/components/layout/header/SkipNav';
 
 export const metadata = {
-  title: 'next.js template',
+  title: 'artround seoul',
   description: '페이지 설명',
   openGraph: {
     title: '페이지 제목',
