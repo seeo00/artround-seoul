@@ -74,8 +74,8 @@ const Splash = () => {
           <GridItem rowSpan={3} colSpan={2} className="overflow-hidden flex items-end justify-center">
             <motion.div variants={imageItemVariants} whileHover={{ scale: 1.05 }} className="w-full h-full">
               <Image
-                src="/images/photo-1522878308970-972ec5eedc0d.avif"
-                alt="Gallery Image"
+                src="/images/splash-1.avif"
+                alt="splash image"
                 width={500}
                 height={500}
                 className="object-cover w-full h-full"
@@ -92,8 +92,8 @@ const Splash = () => {
           >
             <motion.div variants={imageItemVariants} whileHover={{ scale: 1.05 }} className="w-full h-full">
               <Image
-                src="/images/photo-1579762492048-1339b392e3d9.avif"
-                alt="Gallery Image"
+                src="/images/splash-2.avif"
+                alt="splash image"
                 width={500}
                 height={500}
                 className="object-cover w-full h-full"
@@ -104,8 +104,8 @@ const Splash = () => {
           <GridItem rowSpan={2} colSpan={3} colStart={2} className="overflow-hidden flex items-end justify-center">
             <motion.div variants={imageItemVariants} whileHover={{ scale: 1.05 }} className="w-full h-full">
               <Image
-                src="/images/photo-1507643179773-3e975d7ac515.avif"
-                alt="Gallery Image"
+                src="/images/splash-3.avif"
+                alt="splash image"
                 width={500}
                 height={500}
                 className="object-cover w-full h-full"
@@ -116,8 +116,8 @@ const Splash = () => {
           <GridItem rowSpan={1} colSpan={3} className="overflow-hidden flex items-end justify-center">
             <motion.div variants={imageItemVariants} whileHover={{ scale: 1.05 }} className="w-full h-full">
               <Image
-                src="/images/premium_photo-1704907829732-6964b485aaea.avif"
-                alt="Gallery Image"
+                src="/images/splash-4.avif"
+                alt="splash image"
                 width={500}
                 height={500}
                 className="object-cover w-full h-full"
