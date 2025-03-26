@@ -1,7 +1,6 @@
 import { X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import React, { useRef, useEffect } from 'react';
-import { gsap } from 'gsap';
 
 const CloseButton = () => {
   const router = useRouter();

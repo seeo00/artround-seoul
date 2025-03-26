@@ -1,12 +1,10 @@
 'use client';
 
-import { ChevronLeft, Menu, Search, Share, X } from 'lucide-react';
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import BackButton from '@/components/ui/BackButton';
-import CloseButton from '@/components/ui/CloseButton';
-import { CaretLeft, House } from '@phosphor-icons/react';
+import { House } from '@phosphor-icons/react';
 
 const headerNav = [
   { name: '주변', href: '/' },

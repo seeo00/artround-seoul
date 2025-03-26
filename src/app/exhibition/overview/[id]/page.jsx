@@ -1,25 +1,11 @@
 'use client';
 
-import {
-  Box,
-  Container,
-  Heading,
-  HStack,
-  Icon,
-  List,
-  ListIcon,
-  ListItem,
-  Text,
-  useDisclosure,
-  VStack,
-} from '@chakra-ui/react';
-import { Calendar, Clock, Globe, Info, MapPin, MapPinned, Navigation, Ticket } from 'lucide-react';
+import { useDisclosure } from '@chakra-ui/react';
+import { Calendar, Clock, Globe, Info, MapPinned, Navigation, Ticket } from 'lucide-react';
 import React, { use } from 'react';
-
 import Link from 'next/link';
 import { mockExhibitions } from '@/data/exhibitionsData';
 import { formatDate } from '@/app/utils/date';
-import IntroSwiper from './overviewSwiper';
 import OverviewSwiper from './overviewSwiper';
 import { useParams } from 'next/navigation';
 import ActionSheet from '@/components/ui/ActionSheet';

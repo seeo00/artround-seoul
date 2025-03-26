@@ -2,9 +2,7 @@
 
 import React from 'react';
 import { Drawer, DrawerOverlay, DrawerContent, DrawerHeader, DrawerBody } from '@chakra-ui/react';
-import { RiKakaoTalkFill } from 'react-icons/ri';
 import { SiNaver } from 'react-icons/si';
-import { FaGoogle } from 'react-icons/fa';
 import { SiKakaotalk } from 'react-icons/si';
 import { SiGoogle } from 'react-icons/si';
 
