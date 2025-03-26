@@ -71,10 +71,11 @@ const Splash = () => {
 
       <motion.div variants={gridVariants} className="pt-10 h-[calc(100vh-200px)]">
         <Grid templateColumns="repeat(4, 1fr)" templateRows="1fr 1fr 1fr 1fr 1fr 1.5fr" gap={2} className="h-full">
+          {/* 1 */}
           <GridItem rowSpan={3} colSpan={2} className="overflow-hidden flex items-end justify-center">
             <motion.div variants={imageItemVariants} whileHover={{ scale: 1.05 }} className="w-full h-full">
               <Image
-                src="/images/splash-1.avif"
+                src="/images/splash-1.webp"
                 alt="splash image"
                 width={500}
                 height={500}
@@ -83,6 +84,7 @@ const Splash = () => {
             </motion.div>
           </GridItem>
 
+          {/* 2 */}
           <GridItem
             rowSpan={2}
             colSpan={2}
@@ -92,7 +94,7 @@ const Splash = () => {
           >
             <motion.div variants={imageItemVariants} whileHover={{ scale: 1.05 }} className="w-full h-full">
               <Image
-                src="/images/splash-2.avif"
+                src="/images/splash-2.webp"
                 alt="splash image"
                 width={500}
                 height={500}
@@ -101,10 +103,11 @@ const Splash = () => {
             </motion.div>
           </GridItem>
 
+          {/* 3 */}
           <GridItem rowSpan={2} colSpan={3} colStart={2} className="overflow-hidden flex items-end justify-center">
             <motion.div variants={imageItemVariants} whileHover={{ scale: 1.05 }} className="w-full h-full">
               <Image
-                src="/images/splash-3.avif"
+                src="/images/splash-3.webp"
                 alt="splash image"
                 width={500}
                 height={500}
@@ -113,10 +116,11 @@ const Splash = () => {
             </motion.div>
           </GridItem>
 
+          {/* 4 */}
           <GridItem rowSpan={1} colSpan={3} className="overflow-hidden flex items-end justify-center">
             <motion.div variants={imageItemVariants} whileHover={{ scale: 1.05 }} className="w-full h-full">
               <Image
-                src="/images/splash-4.avif"
+                src="/images/splash-4.webp"
                 alt="splash image"
                 width={500}
                 height={500}
